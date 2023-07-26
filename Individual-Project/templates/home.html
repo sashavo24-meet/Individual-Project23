@@ -8,24 +8,20 @@
 <body>
     <header>
     <nav class="navbar">
-        <a href="#" class="nav_branding">DEV.</a>
+        <a href="#" class="nav_branding">DJW.</a>
 
         <ul class="nav_menu">
             <li class="nav_item">
-                <a href="#" class="nav_link">home</a>
+                <a href="/home" class="nav_link" link = 'home.html'>home</a>
             </li>
             <li class="nav_item">
-                <a href="#" class="nav_link">favorites</a>
+                <a href="/account" class="nav_link" >your account</a>
             </li>
             <li class="nav_item">
-                <a href="#" class="nav_link">your account</a>
+                <a href="/signout" class="nav_link">sign out</a>
             </li>
         </ul>
-        <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
+    </header>
     <center id = "hm">
       <h1>New dad joke</h1>
       <button onclick="getRandomDadJoke()">PRESS ME!!</button> 
@@ -56,10 +52,12 @@
         #jokee {
             visibility: hidden;
         }
+
         #hm{
-            position: absolute;
-            top: 130px; right: 330px;
+            align-items: center;
+            top: 500px; right: 130px;
         }
+
         *{
     padding: 0;
     margin: 0;
@@ -104,6 +102,21 @@
 
     .nav_link:hover{
         color: lightblue;
+    }
+
+    .hamburger{
+        display: none;
+        cursor: pointer;
+    }
+
+    .bar{
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        background-color: white;
     }
     </style>
 </body>

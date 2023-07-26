@@ -55,7 +55,7 @@ def signup():
             login_session['user'] = auth.create_user_with_email_and_password(email, password)
             UID = login_session['user']['localId']
             user = {'email': email, 'password': password, 'name': full_name, 'username': username}
-            db.child('Users').child(UID).set(user)
+            userName = db.child('Users').child(UID).set(user)
             return redirect(url_for('home'))
         except:
             error = "failed to signup"
@@ -98,6 +98,18 @@ def jokeses():
     joke = joke_response
     users_jokes = {'joke': joke}
     return render_template('your_jokes.html', jokess = users_jokes)
+
+@app.route('/account')
+def acc():
+    return render_template('account.html', userName = userName)
+
+
+@app.route('/signout')
+def signout():
+    login_session['user'] = None
+    auth.current_user = None
+    return redirect(url_for('signin'))
+
 #Code goes above here
 
 if __name__ == '__main__':

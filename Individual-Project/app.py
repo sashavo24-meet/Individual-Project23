@@ -47,6 +47,7 @@ def signin():
 def signup():
     error = ""
     if request.method == 'POST':
+        pfp = request.form.get('pfp')
         email = request.form['email']
         password = request.form['password']
         full_name = request.form['full_name']
@@ -54,9 +55,9 @@ def signup():
         try:
             login_session['user'] = auth.create_user_with_email_and_password(email, password)
             UID = login_session['user']['localId']
-            user = {'email': email, 'password': password, 'name': full_name, 'username': username}
-            userName = db.child('Users').child(UID).set(user)
-            return redirect(url_for('home'))
+            user = {'email': email, 'password': password, 'name': full_name, 'username': username, 'pfp': pfp}
+            db.child('Users').child(UID).set(user)
+            return redirect(url_for('home', pfp = user['pfp']))
         except:
             error = "failed to signup"
     return render_template("signup.html")
@@ -92,16 +93,9 @@ def home():
 
     return render_template("home.html", joke = joke)
 
-@app.route('/users_jokes')
-def jokeses():
-    joke_response = fetch_random_dad_joke()
-    joke = joke_response
-    users_jokes = {'joke': joke}
-    return render_template('your_jokes.html', jokess = users_jokes)
-
-@app.route('/account')
-def acc():
-    return render_template('account.html', userName = userName)
+@app.route('/frfr', methods = ['POST', 'GET'])
+def fr():
+  return render_template('account.html')
 
 
 @app.route('/signout')

@@ -8,7 +8,7 @@
 <body>
     <header>
     <nav class="navbar">
-        <a href="#" class="nav_branding">DJW.</a>
+        <a href="/frfr" class="nav_branding">DJW.</a>
 
         <ul class="nav_menu">
             <li class="nav_item">
@@ -20,18 +20,18 @@
             <li class="nav_item">
                 <a href="/signout" class="nav_link">sign out</a>
             </li>
+            <li class="nav_item">
+                 <div>
+                   <img src = {{pfp}} alt="Avatar" id="profilePicture">
+                 </div>
+            </li>
         </ul>
     </header>
     <center id = "hm">
-      <h1>New dad joke</h1>
-      <button onclick="getRandomDadJoke()">PRESS ME!!</button> 
+      <h1 id="bb">New dad joke</h1>
+      <button onclick="getRandomDadJoke()" id="dd">PRESS ME!!</button> 
       <div>
-          <h2 id="jokee">{{joke}} <label class="add-fav">
-            <input type="checkbox" />
-            <i class="icon-heart">
-            <i class="icon-plus-sign"></i>
-            </i>
-            </label></h2>
+          <h2 id="jokee">{{joke}}</h2>
       </div>
     </center>
 <script>
@@ -42,6 +42,11 @@
                 .then(data => {
                     const jokeElement = document.getElementById("jokee");
                     jokeElement.textContent = data.joke;  // Update the joke content
+
+                    const imageUrl = document.getElementById("pfp").value;
+
+                    const profilePicture = document.getElementById("profilePicture");
+                    profilePicture.src = imageUrl;
                 })
                 .catch(error => {
                     console.error("Error fetching dad joke:", error);
@@ -49,13 +54,62 @@
         }
     </script>
     <style>
+            #as {
+              border-radius: 50%;
+              max-width: 10%;
+              max-height: 10%;
+              align-items: center;
+              position: relative;
+              left: 450px;
+        }
+
         #jokee {
             visibility: hidden;
+            position: relative;
+            top: 140px;
         }
 
         #hm{
             align-items: center;
             top: 500px; right: 130px;
+
+        }
+
+        #dd{
+            position: relative;
+            align-items: center;
+            top: 40px;
+            border-radius: 50%; 
+            width: 200px;
+            height: 200px;
+            border: none;
+            color: white;
+            font-family: Avenir, Arial, sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            background: red;
+            text-shadow: 0 3px 1px rgba(122,17,8,.8);
+            box-shadow: 0 8px 0 rgb(183,9,0), 
+            0 15px 20px rgba(0,0,0,.35);
+            text-transform: uppercase;
+            transition: .4s all ease-in;
+            outline: none; 
+            cursor: pointer;
+            text-align: center;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
+        #dd:hover { 
+          padding-top: 3px;
+          transform: translateY(4px);
+          box-shadow: 0 4px 0 rgb(183,0,0),
+            0 8px 6px rgba(0,0,0,.45);
+        }
+
+        #bb{
+            position: static;
+            align-items: center;
         }
 
         *{

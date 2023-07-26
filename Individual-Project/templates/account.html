@@ -1,31 +1,34 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title>Acc</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Acc</title>
+</head>
+<body>
+    <form method="post" action="/account">
+    <label>Profile Picture</label>
+    <div>
+    <img src="user" alt="Avatar" id="profilePicture">
+    </div>
+    <input type="submit" name="submit" value="set pfp" onclick = "show()">
+    </form>
+    <img src = 'pfp' alt="Avatar" id="as">
+</body>
+<style>
+    #as {
+      border-radius: 50%;
+      max-width: 10%;
+      max-height: 10%;
+}
 
-        <!-- Wrapper -->
-            <div id="wrapper">
+img{
+    visibility: hidden;
+}
+</style>
+<script>
+    function show() {
+        document.getElementById('as').style.visibility = "visible"
+    }
 
-        <center>
-          <h1>{{userName['username']}}</h1>
-          
-
-        </center>
-
-
-
-            </div>
-
-        <!-- Scripts -->
-            <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
-            <script src="static/js/jquery.poptrox.min.js"></script>
-            <script src="static/js/skel.min.js"></script>
-            <script src="static/js/main.js"></script>
-
-    </body>
+</script>
 </html>
